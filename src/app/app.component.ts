@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
+import {SlideToggleComponent} from "./slide-toggle/slide-toggle.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, EmployeeListComponent],
+  imports: [CommonModule, EmployeeListComponent, SlideToggleComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

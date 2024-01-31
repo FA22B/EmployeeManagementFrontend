@@ -1,0 +1,10 @@
+<div class="container" (click)="onPress()">
+  <div class="row">
+    <div class="col slider-child" [ngClass]="!selected ? 'slider-child-active' : ''">
+      {{optionOff}}
+    </div>
+    <div class="col slider-child" [ngClass]="selected ? 'slider-child-active' : ''">
+      {{optionOn}}
+    </div>
+  </div>
+</div>

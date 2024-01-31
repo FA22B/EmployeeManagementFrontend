@@ -1,0 +1,9 @@
+.slider-child {
+  border-radius: 60px;
+  text-align: center;
+
+}
+
+.slider-child-active {
+  background-color: lightgreen;
+}
