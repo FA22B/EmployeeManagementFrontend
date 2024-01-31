@@ -12,11 +12,8 @@ export class EmployeeListService {
 
   public getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>('/backend/employees', {
-      headers: this.getHeaders(),
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
     });
-  }
-
-  private getHeaders(): HttpHeaders | { [header: string]: string | string[] } | undefined {
-    return new HttpHeaders().set('Content-Type', 'application/json');
   }
 }
