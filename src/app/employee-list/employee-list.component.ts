@@ -23,9 +23,13 @@ export class EmployeeListComponent {
   }
 
   fetchData() {
+<<<<<<< HEAD
     //var bearer =
     this.employees$ = this.service.getEmployees();
     /*this.employees$ = this.http.get<Employee[]>('/backend', {
+=======
+    this.employees$ = this.http.get<Employee[]>('/backend/employees', {
+>>>>>>> ab6ddbd286c1a6b9efddcc6f01fdd4316004a9aa
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
         //.set('Authorization', `Bearer ${this.bearer}`)

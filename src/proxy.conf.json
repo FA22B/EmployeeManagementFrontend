@@ -1,10 +1,19 @@
 {
   "/backend": {
-    "target": "http://localhost:8089/employees",
+    "target": "http://localhost:8089",
     "secure": false,
     "logLevel": "debug",
     "pathRewrite": {
       "^/backend": ""
+    },
+    "changeOrigin": true
+  },
+  "/auth": {
+    "target": "http://authproxy.szut.dev",
+    "secure": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/auth": ""
     },
     "changeOrigin": true
   }
