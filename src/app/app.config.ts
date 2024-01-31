@@ -3,15 +3,20 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),importProvidersFrom(KeycloakAngularModule),
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom(KeycloakAngularModule),
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService],
-    }]
+    },
+    provideHttpClient()
+    ]
 };
 
 export function initializeKeycloak(keycloak: KeycloakService) {
@@ -23,8 +28,7 @@ export function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'employee-management-service-frontend'
       },
       initOptions: {
-        checkLoginIframe: true,
-        checkLoginIframeInterval: 25
+        checkLoginIframe: false,
       }
     });
 }
