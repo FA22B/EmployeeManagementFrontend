@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="max-width: 600px">
   <div class="row">
     <div class="row ms-1">
       <div class="col d-flex align-items-center">
@@ -21,10 +21,10 @@
       </form>
     </div>
   </div>
-  <div class="row m-auto mt-3">
+  <div class="row m-auto mt-3" id="customTable">
     <table class="table">
       <thead>
-        <th>ID</th>
+        <th hidden>ID</th>
         <th>Vorname</th>
         <th>Nachname</th>
       </thead>
@@ -36,9 +36,14 @@
             (click)="selectEmployee(e)"
             (dblclick)="goToEmployee(e.id)"
           >
-            <td class="user-select-none">{{ e.id }}</td>
+            <td class="user-select-none" hidden>{{ e.id }}</td>
             <td class="user-select-none">{{ e.firstName }}</td>
             <td class="user-select-none">{{ e.lastName }}</td>
+            <td class="user-select-none" style="width: 20px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+              </svg>
+            </td>
           </tr>
         </ng-container>
       </tbody>

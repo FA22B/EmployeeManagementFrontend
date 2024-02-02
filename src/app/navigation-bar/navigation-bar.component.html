@@ -1,17 +1,27 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-success" style="margin-bottom: 30px">
+<nav class="navbar bg-body-tertiary navbar-dark bg-success" style="margin-bottom: 10px; margin-top: 10px">
+  <div class="align-items-end">
+    <a class="btn btn-outline-danger nav-link cursor-pointer" (click)="logout()">Logout</a>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-success" style="margin-bottom: 30px; margin-top: 30px;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Employee-Managment-Service</a>
-    <button class="navbar-toggler" type="button" (click)="toggleExpanded()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <ng-container *ngIf="itemsShown">
-      <div class="expand navbar-collapse" [class.expand]="expanded" [class.collapse]="!expanded" id="navbarNav">
-        <ul class="navbar-nav">
+
+    <ng-container *ngIf="itemsShown" id="navbarNav">
+      <div class="btn-group" role="group" aria-label="Employee/Qualification Button Group">
+        <input type="radio" class="btn-check" [routerLink]="['/employee']" name="btnradio" id="btnEmployee" autocomplete="off" checked>
+        <label class="btn btn-outline-success" for="btnEmployee">Employees</label>
+
+        <input type="radio" class="btn-check" [routerLink]="['/qualification']" name="btnradio" id="btnQualification" autocomplete="off">
+        <label class="btn btn-outline-success" for="btnQualification">Qualifications</label>
+      </div>
+
+      <!--<div class="expand navbar-collapse" [class.expand]="expanded" [class.collapse]="!expanded" id="navbarNav" style="margin-top: 15px">
+        <ul class="navbar-nav center-items">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/employee']" routerLinkActive="active">Mitarbeiter</a>
+            <a class="nav-link" id="navEmployee" [routerLink]="['/employee']" routerLinkActive="active">Mitarbeiter</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/qualification']" routerLinkActive="active">Qualifikationen</a>
+            <a class="nav-link" [routerLink]="['/qualification']" >Qualifikationen</a>
           </li>
         </ul>
         <ul class="navbar-nav">
@@ -19,7 +29,7 @@
             <a class="nav-link cursor-pointer" (click)="logout()">Logout</a>
           </li>
         </ul>
-      </div>
+      </div>-->
     </ng-container>
   </div>
 </nav>
