@@ -13,8 +13,7 @@ export function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'employee-management-service-frontend',
       },
       initOptions: {
-        checkLoginIframe: true,
-        checkLoginIframeInterval: 25,
+        checkLoginIframe: false
       },
     });
 }
