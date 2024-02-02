@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import {EmployeeListComponent} from "./employee-list/employee-list.component";
+import { NavigationStart, Router } from '@angular/router';
+import { HistoryService } from './history.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule,RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'lf10StarterNew';
+  title = "employeeFrontendStarter";
+
+  constructor(private historyService: HistoryService, private router: Router) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationStart) {
+        historyService.storePreviousRoute();
+      }
+    });
+  }
 }
