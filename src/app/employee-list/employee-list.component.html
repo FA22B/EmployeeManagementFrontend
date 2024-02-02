@@ -1,7 +1,57 @@
-<h1>LF10-Starter</h1>
-Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, sollten hier die Namen der in der Datenbank gespeicherten Mitarbeiter angezeigt werden!
-<ul>
-  <li *ngFor="let e of employees$ | async">
-    {{e.lastName }}, {{e.firstName}}
-  </li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="row ms-1">
+      <div class="col d-flex align-items-center">
+        <h5 class="m-0">Mitarbeiter-Liste</h5>
+      </div>
+      <div class="col">
+        <p style="text-align: right" class="align-self-center m-2 me-4">
+          <span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/employee/editor']">add</span>
+          <span class="material-icons text-success cursor-pointer me-1" (click)="searchForString()">search</span>
+          <span class="material-icons text-success cursor-pointer" (click)="fetchData()">
+            <ng-container *ngIf="isSearchModeEnabled(); else reload">backspace</ng-container>
+            <ng-template #reload>refresh</ng-template>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="row m-auto">
+      <form (submit)="searchForString()">
+        <input class="form-control form" placeholder="Suche..." [(ngModel)]="searchValue" name="searchValue" />
+      </form>
+    </div>
+  </div>
+  <div class="row m-auto mt-3">
+    <table class="table">
+      <thead>
+        <th>ID</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let e of employees$ | async">
+          <tr
+            class="tr-hover"
+            [class.tr-active]="isEmployeeContainedInSelection(e)"
+            (click)="selectEmployee(e)"
+            (dblclick)="goToEmployee(e.id)"
+          >
+            <td class="user-select-none">{{ e.id }}</td>
+            <td class="user-select-none">{{ e.firstName }}</td>
+            <td class="user-select-none">{{ e.lastName }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="isAnythingSelected()" class="cursor-pointer expand">
+    <app-confirmable-delete
+      [alignButtonRight]="'true'"
+      (deleteEmit)="deleteEmployeeSelection()"
+      [message]="getDeleteConfirmationMessage()"
+    ></app-confirmable-delete>
+  </div>
+  <div *ngIf="(employees$ | async)?.length === 0">
+    <p>Es wurden keine Mitarbeiter*innen gefunden.</p>
+  </div>
+</div>
