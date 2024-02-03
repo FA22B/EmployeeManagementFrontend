@@ -19,5 +19,4 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.507);
   backdrop-filter: blur(2px);
-  transition: 0.2;
 }
