@@ -9,8 +9,8 @@
           <!--<span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/qualification/editor']"
             >add</span
           >-->
-          <span class="material-icons text-success cursor-pointer me-1" (click)="searchForString()">search</span>
-          <span class="material-icons text-success cursor-pointer" (click)="fetchData()">
+          <span class="material-icons cursor-pointer me-1" (click)="searchForString()" style="color: #588A87">search</span>
+          <span class="material-icons cursor-pointer" (click)="fetchData()" style="color: #588A87">
             <ng-container *ngIf="isSearchModeEnabled(); else reload">backspace</ng-container>
             <ng-template #reload>refresh</ng-template>
           </span>

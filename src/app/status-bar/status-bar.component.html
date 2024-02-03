@@ -1,18 +1,18 @@
 <div class="row margin-y-10">
   <div class="col-1 center-items">
-    <span class="material-icons cursor-pointer ög" (click)="goBack()">arrow_back</span>
+    <span class="material-icons cursor-pointer" (click)="goBack()" style="color: #588A87; font-size: xx-large">arrow_back</span>
   </div>
-  <div class="col-9 d-flex align-items-center">
+  <div class="col-10 d-flex align-items-center">
     <h4 class="m-0">{{ title }}</h4>
   </div>
   <ng-container *ngIf="editable">
     <div class="col-1 expand center-items">
-      <span class="material-icons cursor-pointer text-success" [routerLink]="[editRoute]">edit</span>
+      <span class="material-icons cursor-pointer" [routerLink]="[editRoute]" style="color: #588A87; font-size: xx-large">edit</span>
     </div>
   </ng-container>
   <ng-container *ngIf="saveable">
     <div class="col-1 expand center-items">
-      <span class="material-icons cursor-pointer text-success" (click)="save()">save</span>
+      <span class="material-icons cursor-pointer" (click)="save()" style="color: #588A87; font-size: xx-large">save</span>
     </div>
   </ng-container>
 </div>
