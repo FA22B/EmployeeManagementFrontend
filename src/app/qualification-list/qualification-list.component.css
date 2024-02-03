@@ -1,8 +1,18 @@
 #customTable {
-  border-style: solid;
+  border-style: none;
   border-color: #cdd;
   border-radius: 10px;
+  background-color: #F2F2F2;
   padding: 10px;
-  max-height: 600px;
-  overflow: auto;
+  max-width: 600px;
+}
+
+.add-btn {
+  width: 70px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #588A87;
+  color: white;
+  align-items: center;
+  padding-bottom: 30px;
 }

@@ -1,0 +1,24 @@
+#qualification-details {
+  margin-top: 20px;
+  border-style: none;
+  border-radius: 40px;
+  padding: 30px;
+  padding-bottom: 10px;
+  background-color: #D3DCD7;
+  color: #588A87;
+}
+
+.delete-btn {
+  background-color: #588A87;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  border-style: none;
+}
+
+td {
+  border-radius: 20px;
+  background-color: #F2F2F2;
+  color:#588A87;
+}

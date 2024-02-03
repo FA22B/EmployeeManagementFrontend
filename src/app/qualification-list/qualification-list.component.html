@@ -1,4 +1,4 @@
-<div class="container" style="max-width: 600px">
+<div class="container" id="customTable">
   <div class="row">
     <div class="row ms-1">
       <div class="col d-flex align-items-center">
@@ -6,9 +6,9 @@
       </div>
       <div class="col">
         <p style="text-align: right" class="align-self-center m-2 me-4">
-          <span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/qualification/editor']"
+          <!--<span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/qualification/editor']"
             >add</span
-          >
+          >-->
           <span class="material-icons text-success cursor-pointer me-1" (click)="searchForString()">search</span>
           <span class="material-icons text-success cursor-pointer" (click)="fetchData()">
             <ng-container *ngIf="isSearchModeEnabled(); else reload">backspace</ng-container>
@@ -28,7 +28,7 @@
       </form>
     </div>
   </div>
-  <div class="row m-auto mt-3" id="customTable">
+  <div class="row m-auto mt-3" style="max-height: 600px;overflow: auto;">
     <table class="table">
       <thead>
         <th>Name</th>
@@ -38,10 +38,14 @@
           <tr
             class="tr-hover"
             [class.tr-active]="isQualificationContainedInSelection(q)"
-            (click)="selectQualification(q)"
-            (dblclick)="goToQualification(q.skill)"
+            (click)="goToQualification(q.skill)"
           >
             <td>{{ q.skill }}</td>
+            <td class="user-select-none" style="width: 20px; background-color: #F2F2F2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+              </svg>
+            </td>
           </tr>
         </ng-container>
       </tbody>
@@ -61,3 +65,12 @@
     </div>
   </div>
 </div>
+
+
+<div class="text-center" style="margin: 25px;">
+  <button class="btn add-btn" [routerLink]="['/qualification/editor']">
+    <span class="material-icons cursor-pointer">add</span>
+  </button>
+</div>
+
+<!--(click)="selectQualification(q)"-->

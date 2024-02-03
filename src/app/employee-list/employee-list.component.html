@@ -6,7 +6,7 @@
       </div>
       <div class="col" style="background-color: #F2F2F2">
         <p style="text-align: right" class="align-self-center m-2 me-4">
-          <span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/employee/editor']">add</span>
+          <!--<span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/employee/editor']">add</span>-->
           <span class="material-icons text-success cursor-pointer me-1" (click)="searchForString()">search</span>
           <span class="material-icons text-success cursor-pointer" (click)="fetchData()">
             <ng-container *ngIf="isSearchModeEnabled(); else reload">backspace</ng-container>
@@ -33,16 +33,14 @@
           <tr
             class="tr-hover"
             [class.tr-active]="isEmployeeContainedInSelection(e)"
-            (click)="selectEmployee(e)"
-            (dblclick)="goToEmployee(e.id)"
+            (click)="goToEmployee(e.id)"
             style="background-color: #F2F2F2"
           >
             <td class="user-select-none" hidden>{{ e.id }}</td>
-            <td class="user-select-none" style="background-color: #F2F2F2">{{ e.firstName }} {{ e.lastName }}</td>
-            <!--<td class="user-select-none" style="background-color: #F2F2F2"></td>-->
-            <td class="user-select-none" style="width: 20px; background-color: #F2F2F2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+            <td class="user-select-none employee-btn" style="background-color: #F2F2F2">{{ e.firstName }} {{ e.lastName }}</td>
+            <td class="user-select-none employee-btn" style="width: 20px; margin-left: 50px; background-color: #F2F2F2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
               </svg>
             </td>
           </tr>
@@ -61,3 +59,11 @@
     <p>Es wurden keine Mitarbeiter*innen gefunden.</p>
   </div>
 </div>
+
+<div class="text-center" style="margin: 25px;">
+  <button class="btn add-btn" [routerLink]="['/employee/editor']">
+    <span class="material-icons cursor-pointer">add</span>
+  </button>
+</div>
+
+<!--(click)="selectEmployee(e)"-->
