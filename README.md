@@ -95,5 +95,4 @@ Des Weiteren ist der Client mit der Bezeichnung employee-management-service-fron
 
 # Bugs
 
-Trage hier die Features ein, die nicht funktionieren. Beschreibe den jeweiligen Fehler. 
-
+Bei manchen User liefert die Keycloak Anbindung die Token nicht mit. In diesem Fall kann man ein anderes Projekt bei dem die Anbindung funktioniert starten (zb. https://github.com/berndheidemann/lf10_starter_project_test_impl), eine request machen und das Programm beenden, dann erneut dieses starten.
