@@ -216,7 +216,7 @@ export class EmployeeEditorComponent implements OnInit {
    * @returns boolean if skill is not included in skill set
    */
   private isEmployeeSkillSetNotIncludingSkill(skill: string): boolean {
-    return this.employee.skillSet?.filter((entry) => entry == skill).length == 0;
+    return this.employee.skillSet?.filter((entry) => entry.skill == skill).length == 0;
   }
 
   /**
