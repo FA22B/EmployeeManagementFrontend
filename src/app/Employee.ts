@@ -1,3 +1,5 @@
+import {Qualification} from "./Qualification";
+
 export class Employee {
   public static readonly LAST_NAME_FIELD_NAME = 'lastName';
   public static readonly FIRST_NAME_FIELD_NAME = 'firstName';
@@ -22,6 +24,6 @@ export class Employee {
     public postcode?: string,
     public city?: string,
     public phone?: string,
-    public skillSet?: string[]
+    public skillSet?: Qualification[]
   ) {}
 }

@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { firstValueFrom, Observable } from 'rxjs';
-import { Employee } from './Employee';
-import { Qualification } from './Qualification';
-import { ValidationResult } from './ValidationResult';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {firstValueFrom, Observable} from 'rxjs';
+import {Employee} from './Employee';
+import {Qualification} from './Qualification';
+import {ValidationResult} from './ValidationResult';
 import {QualificationService} from "./qualification.service";
 
 @Injectable({
@@ -177,8 +177,7 @@ export class EmployeeService {
    */
   public async addEmployee(employee: Employee): Promise<Employee> {
     if (employee.skillSet != undefined) {
-      const qualifications = this.qualificationService.convertStringArrayToQualificationArray(employee.skillSet);
-      await this.qualificationService.saveNotExistingQualifications(qualifications);
+      await this.qualificationService.saveNotExistingQualifications(employee.skillSet);
     }
     return firstValueFrom(this.http.post('/backend/employees', employee, { headers: this.getHeaders() }));
   }
@@ -202,14 +201,14 @@ export class EmployeeService {
    * skillLists, it only validates them.
    *
    * @param employee - to be updated
-   * @param skills - array to be matched
+   * @param qualifications - array to be matched
    */
-  private async updateQualificationsOfEmployee(employee: Employee, skills: string[]) {
+  private async updateQualificationsOfEmployee(employee: Employee, qualifications: Qualification[]) {
     if (employee.id == undefined) {
       return;
     }
     const oldEmployeeData: Employee = await this.getEmployeeById(employee.id);
-    const qualifications = this.qualificationService.convertStringArrayToQualificationArray(skills);
+
     await this.qualificationService.saveNotExistingQualifications(qualifications);
     const qualificationsToAdd: Qualification[] = this.getNotInEmployeeSkillSetContainedQualifications(
       oldEmployeeData,
@@ -297,12 +296,12 @@ export class EmployeeService {
    * Checks if the qualification is included in the skillset
    *
    * @param employee - thats skillset is checked
-   * @param qualfication - that should be contained in the employees skillset
+   * @param qualification - that should be contained in the employees skillset
    * @returns boolean if the criteria is matching
    */
   private isSkillIncludedInEmployeeSkillSet(employee: Employee, qualification: Qualification): boolean {
     if (employee.skillSet != undefined && qualification.skill != undefined) {
-      return employee.skillSet?.includes(qualification.skill);
+      return employee.skillSet?.includes(qualification);
     } else {
       return false;
     }
@@ -321,10 +320,9 @@ export class EmployeeService {
   ): Qualification[] {
     let result: Qualification[] = [];
     if (employee.skillSet != undefined) {
-      const skillList = employee.skillSet.filter(
+      result = employee.skillSet.filter(
         (qualification) => !this.isEmployeeQualificationIncludedInQualificationSet(qualification, qualifications)
-      );
-      result = this.qualificationService.convertStringArrayToQualificationArray(skillList);
+      )
     }
     return result;
   }
@@ -332,11 +330,11 @@ export class EmployeeService {
   /**
    * Checks if employee qualification is included in the qualification array
    *
-   * @param skill - that should be contained in the qualifications array
+   * @param qualification - that should be contained in the qualifications array
    * @param qualifications - array that is being checked
    */
-  private isEmployeeQualificationIncludedInQualificationSet(skill: string, qualifications: Qualification[]): boolean {
-    return qualifications.filter((entry) => entry.skill == skill).length != 0;
+  private isEmployeeQualificationIncludedInQualificationSet(qualification: Qualification, qualifications: Qualification[]): boolean {
+    return qualifications.filter((entry) => entry.skill == qualification.skill).length != 0;
   }
 
   /**

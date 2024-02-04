@@ -138,7 +138,13 @@ export class EmployeeEditorComponent implements OnInit {
    */
   addSkillToEmployee(skill: string | undefined) {
     if (skill != undefined && this.isEmployeeSkillSetNotIncludingSkill(skill)) {
-      this.employee.skillSet?.push(skill);
+      this.qualificationService
+        .getQualificationBySkill(skill)
+        .then(q => {
+          if (q != undefined) {
+            this.employee.skillSet?.push(q)
+          }
+        })
     }
     this.tagInputValue = '';
     this.clearSuggestions();
@@ -150,7 +156,7 @@ export class EmployeeEditorComponent implements OnInit {
    *
    * @param skill - string to check with
    */
-  removeSkill(skill: string) {
+  removeSkill(skill: Qualification) {
     this.employee.skillSet = this.employee.skillSet?.filter((entry) => entry != skill);
   }
 
