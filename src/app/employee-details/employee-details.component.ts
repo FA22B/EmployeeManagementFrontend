@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterModule} from '@angular/router';
-import { Employee } from '../Employee';
-import { EmployeeService } from '../employee.service';
-import { HistoryService } from '../history.service';
+import {Employee} from '../Employee';
+import {EmployeeService} from '../employee.service';
+import {HistoryService} from '../history.service';
 import {CommonModule} from "@angular/common";
 import {NotFoundComponent} from "../not-found/not-found.component";
 import {ConfirmableDeleteComponent} from "../confirmable-delete/confirmable-delete.component";
@@ -13,7 +13,7 @@ import {StatusBarComponent} from "../status-bar/status-bar.component";
   selector: 'app-employee-details',
   imports: [CommonModule, FormsModule, RouterModule, StatusBarComponent, NotFoundComponent, ConfirmableDeleteComponent],
   templateUrl: './employee-details.component.html',
-  styleUrls: ['./employee-details.component.css'],
+  styleUrls: ['./employee-details.component.scss'],
   standalone: true
 })
 export class EmployeeDetailsComponent implements OnInit {

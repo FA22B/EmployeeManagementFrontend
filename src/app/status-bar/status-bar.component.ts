@@ -1,6 +1,5 @@
-import { Component, Input, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { HistoryService } from '../history.service';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {HistoryService} from '../history.service';
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 
@@ -8,7 +7,7 @@ import {RouterModule} from "@angular/router";
   selector: 'app-status-bar',
   imports: [CommonModule, RouterModule],
   templateUrl: './status-bar.component.html',
-  styleUrls: ['./status-bar.component.css'],
+  styleUrls: ['./status-bar.component.scss'],
   standalone: true
 })
 export class StatusBarComponent {

@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-confirmable-delete',
   imports: [CommonModule],
   templateUrl: './confirmable-delete.component.html',
-  styleUrls: ['./confirmable-delete.component.css'],
+  styleUrls: ['./confirmable-delete.component.scss'],
   standalone: true
 })
 export class ConfirmableDeleteComponent {

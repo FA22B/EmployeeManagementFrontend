@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { firstValueFrom, Observable } from 'rxjs';
-import { Qualification } from './Qualification';
-import { QualificationEmployees } from './QualificationEmployees';
-import { ValidationResult } from './ValidationResult';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {firstValueFrom, Observable} from 'rxjs';
+import {Qualification} from './Qualification';
+import {QualificationEmployees} from './QualificationEmployees';
+import {ValidationResult} from './ValidationResult';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +18,8 @@ export class QualificationService {
    * @param qualification - to check if it is valid
    * @returns boolean if the qualification is valid
    */
-  public isQualificationValid(qualfication: Qualification): boolean {
-    return this.getAllFieldValidationResults(qualfication).filter((result) => !result.valid).length == 0;
+  public isQualificationValid(qualification: Qualification): boolean {
+    return this.getAllFieldValidationResults(qualification).filter((result) => !result.valid).length == 0;
   }
 
   /**
@@ -28,22 +28,22 @@ export class QualificationService {
    * @param qualification - that owns the fields that are being checked
    * @returns {@link ValidationResult} with an array of validation results
    */
-  public getAllFieldValidationResults(qualfication: Qualification): ValidationResult[] {
+  public getAllFieldValidationResults(qualification: Qualification): ValidationResult[] {
     const validationResults = [];
     for (const field of Qualification.ALL_FIELDS) {
-      validationResults.push(this.getFieldValidationResult(field, qualfication));
+      validationResults.push(this.getFieldValidationResult(field, qualification));
     }
     return validationResults;
   }
 
   /**
    * Gets the field validation result of the qualification fields
-   * that are defined in the {@link Qualifcation} constants
+   * that are defined in the {@link Qualification} constants
    *
-   * @param field - thats validation result is required
+   * @param field - whose validation result is required
    * @param qualification - that owns the field that is being checked
    * @returns {@link ValidationResult} of the qualification
-   * @throws {@link Error} if the field doesnt exist
+   * @throws {@link Error} if the field does not exist
    */
   public getFieldValidationResult(field: string, qualification: Qualification): ValidationResult {
     let validationResult: ValidationResult;
@@ -119,14 +119,32 @@ export class QualificationService {
    * @returns Qualification as Promise
    */
   public async getQualificationBySkill(skill: string): Promise<Qualification | undefined> {
-    const qualification = await firstValueFrom(
+    return await firstValueFrom(
       this.http.get<Qualification[]>(`/backend/qualifications`, {
         headers: this.getHeaders(),
       })
     ).then((qualifications) => {
       return this.getQualificationFromListByDesignation(qualifications, skill);
     });
-    return qualification;
+  }
+
+
+  /**
+   * Asynchronously gets a qualification by its id.
+   *
+   * @param qualification_id
+   * @returns Qualification as Promise
+   */
+  public async getQualificationById(qualification_id: number): Promise<Qualification | null> {
+    return await firstValueFrom(
+      this.http.get<Qualification[]>(`/backend/qualifications`, {
+        headers: this.getHeaders(),
+      }))
+      .then(qualifications =>
+        qualifications
+          .find(qualification => qualification.id == qualification_id)
+        || null
+      );
   }
 
   /**
@@ -216,29 +234,17 @@ export class QualificationService {
   }
 
   /**
-   * Gets qualification employees by skill
+   * Gets qualification employees by id
    *
-   * @param skill - to get the qualifications employees object
+   * @param qualifications_id - to get the qualifications employees object
    */
-  public getQualificationEmployeesBySkill(skill: string): Observable<QualificationEmployees> {
-    return this.http.get<QualificationEmployees>(`/backend/qualifications/${skill}/employees`, {
+  public getQualificationEmployeesById(qualifications_id: number): Observable<QualificationEmployees> {
+    return this.http.get<QualificationEmployees>(`/backend/qualifications/${qualifications_id}/employees`, {
       headers: this.getHeaders(),
     });
   }
 
-  /**
-   * Converts a string array to a qualification array
-   *
-   * @param skillArray - string array to convert
-   * @returns converted qualification array
-   */
-  public convertStringArrayToQualificationArray(skillArray: string[]): Qualification[] {
-    const qualifications: Qualification[] = [];
-    for (const skill of skillArray) {
-      qualifications.push(this.convertStringToQualification(skill));
-    }
-    return qualifications;
-  }
+
 
   /**
    * Converts a string to a qualification
@@ -251,9 +257,9 @@ export class QualificationService {
   }
 
   /**
-   * saves asynchronusly a qualification if it doesn't exist
+   * saves asynchronously a qualification if it doesn't exist
    *
-   * @param allQualification - array to check from
+   * @param allQualifications - array to check from
    * @param qualification -  to check with
    */
   private async saveQualificationIfNotExisting(qualification: Qualification, allQualifications: Qualification[]) {
@@ -265,7 +271,7 @@ export class QualificationService {
   /**
    * Checks if qualification is existing in array
    *
-   * @param qualificaiton - to check with
+   * @param qualification - to check with
    * @param allQualifications - array to check from
    */
   private isQualificationNotExisting(qualification: Qualification, allQualifications: Qualification[]) {

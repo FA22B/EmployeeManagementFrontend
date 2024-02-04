@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
-import { map, Observable, of } from 'rxjs';
-import { Qualification } from '../Qualification';
-import { QualificationService } from '../../../../EMS/src/app/services/qualifications/qualification.service';
+import {map, Observable, of} from 'rxjs';
+import {Qualification} from '../Qualification';
 import {CommonModule} from "@angular/common";
 import {ConfirmableDeleteComponent} from "../confirmable-delete/confirmable-delete.component";
 import {FormsModule} from "@angular/forms";
+import {QualificationService} from "../qualification.service";
 
 @Component({
   selector: 'app-qualification-list',
   imports: [CommonModule, ConfirmableDeleteComponent, FormsModule, RouterModule],
   templateUrl: './qualification-list.component.html',
-  styleUrls: ['./qualification-list.component.css'],
+  styleUrls: ['./qualification-list.component.scss'],
   standalone: true
 })
 export class QualificationListComponent {
@@ -40,7 +40,7 @@ export class QualificationListComponent {
    *
    * @param id - of the employee
    */
-  goToQualification(id: string | undefined) {
+  goToQualification(id: number | undefined) {
     if (id != undefined) {
       this.router.navigateByUrl('/qualification/' + id);
     }
@@ -81,7 +81,7 @@ export class QualificationListComponent {
   }
 
   /**
-   * Deletes asynchronusly the qualification selection
+   * Deletes asynchronously the qualification selection
    */
   async deleteQualificationSelection() {
     if (await this.isSelectionDeletable()) {
@@ -93,9 +93,8 @@ export class QualificationListComponent {
   }
 
   /**
-   * Checks asynchronusly if any qualification of the selection is assigned to any employee (deletable)
+   * Checks asynchronously if any qualification of the selection is assigned to any employee (deletable)
    *
-   * @param qualification - to check
    * @returns boolean if the qualification is deletable
    *
    */
@@ -124,7 +123,7 @@ export class QualificationListComponent {
   }
 
   /**
-   * Checks asynchronusly if a qualification is deletable
+   * Checks asynchronously if a qualification is deletable
    */
   resetDeletionError() {
     this.failed = false;

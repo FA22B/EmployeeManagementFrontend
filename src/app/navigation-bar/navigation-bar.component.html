@@ -1,19 +1,15 @@
-<nav class="navbar" style="background-color: #B6C5BE">
-  <div class="align-items-end" style="background-color: #B6C5BE">
+<div class="container">
+  <div style="background-color: #B6C5BE">
     <a class="btn btn-outline-danger nav-link cursor-pointer" (click)="logout()">Logout</a>
   </div>
-</nav>
-<nav class="navbar navbar-expand-lg" style="margin-bottom: 30px; margin-top: 30px; background-color: #B6C5BE">
-  <div class="container-fluid">
 
-    <ng-container *ngIf="itemsShown" id="navbarNav">
-      <div class="btn-group" role="group" aria-label="Employee/Qualification Button Group">
-        <input type="radio" class="btn-check" [routerLink]="['/employee']" name="btnradio" id="btnEmployee" autocomplete="off" checked>
-        <label class="btn btn-outline-success" for="btnEmployee">Employees</label>
+  <div class="d-flex justify-content-center">
+    <div class="btn-group" role="group" aria-label="Employee/Qualification Button Group">
+      <input type="radio" class="btn-check" [routerLink]="['/employee']" name="btnradio" id="btnEmployee" autocomplete="off" checked>
+      <label class="btn btn-outline-success" for="btnEmployee">Employees</label>
 
-        <input type="radio" class="btn-check" [routerLink]="['/qualification']" name="btnradio" id="btnQualification" autocomplete="off">
-        <label class="btn btn-outline-success" for="btnQualification">Qualifications</label>
-      </div>
-    </ng-container>
+      <input type="radio" class="btn-check" [routerLink]="['/qualification']" name="btnradio" id="btnQualification" autocomplete="off">
+      <label class="btn btn-outline-success" for="btnQualification">Qualifications</label>
+    </div>
   </div>
-</nav>
+</div>
