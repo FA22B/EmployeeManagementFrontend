@@ -7,9 +7,19 @@
   background-color: #D3DCD7;
   color: #588A87;
   margin: 0 auto;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .form-control {
   border-radius: 20px;
+}
+
+.save-btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #588A87;
+  color: white;
+  margin-right: 50px;
+  margin-bottom: 10px;
 }

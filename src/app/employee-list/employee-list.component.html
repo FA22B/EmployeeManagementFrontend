@@ -6,7 +6,6 @@
       </div>
       <div class="col" style="background-color: #F2F2F2">
         <p style="text-align: right" class="align-self-center m-2 me-4">
-          <!--<span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/employee/editor']">add</span>-->
           <span class="material-icons cursor-pointer me-1" (click)="searchForString()" style="color: #588A87">search</span>
           <span class="material-icons cursor-pointer" (click)="fetchData()" style="color: #588A87">
             <ng-container *ngIf="isSearchModeEnabled(); else reload">backspace</ng-container>
@@ -26,7 +25,6 @@
       <thead>
         <th hidden>ID</th>
         <th>Mitarbeiter</th>
-        <!--<th>Nachname</th>-->
       </thead>
       <tbody>
         <ng-container *ngFor="let e of employees$ | async">
@@ -65,5 +63,3 @@
     <span class="material-icons cursor-pointer">add</span>
   </button>
 </div>
-
-<!--(click)="selectEmployee(e)"-->

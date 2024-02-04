@@ -1,6 +1,6 @@
 <div class="container" style="width: 500px; background-color: #B6C5BE">
   <ng-container *ngIf="found; else employeeNotAvailable">
-    <app-status-bar [editable]="false"></app-status-bar>
+    <app-status-bar></app-status-bar>
     <ng-container *ngIf="showSaveSuccess">
       <div class="alert alert-success justify-content-end" role="alert">Speichern erfolgreich!</div>
     </ng-container>
@@ -11,14 +11,6 @@
     </div>
     <div id="employee-details">
       <div class="row text-start">
-        <!--<div class="col text-end">
-          <p><b>Vorname:</b></p>
-          <p><b>Nachname:</b></p>
-          <p><b>Straße:</b></p>
-          <p><b>Postleitzahl:</b></p>
-          <p><b>Stadt:</b></p>
-          <p><b>Telefonnummer:</b></p>
-        </div>-->
         <div class="col text-start" style="">
           <p class="h3"><b>{{ this.employee?.firstName }} {{ this.employee?.lastName }}</b></p>
           <p class="h4"><b>{{ this.employee?.phone }}</b></p>
@@ -30,9 +22,6 @@
         <h3><b>Qualifikationen</b></h3>
         <div class="col">
           <table class="table">
-            <!--<thead>
-            <th>Name</th>
-            </thead>-->
             <tbody>
             <ng-container *ngFor="let skill of employee?.skillSet">
               <tr class="tr-hover" [routerLink]="['/qualification/', skill]">
