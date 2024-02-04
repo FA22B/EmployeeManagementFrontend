@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container" id="customTable">
   <div class="row">
     <div class="row ms-1">
       <div class="col d-flex align-items-center">
         <h5 class="m-0">Mitarbeiter-Liste</h5>
       </div>
-      <div class="col">
+      <div class="col" style="background-color: #F2F2F2">
         <p style="text-align: right" class="align-self-center m-2 me-4">
-          <span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/employee/editor']">add</span>
-          <span class="material-icons text-success cursor-pointer me-1" (click)="searchForString()">search</span>
-          <span class="material-icons text-success cursor-pointer" (click)="fetchData()">
+          <!--<span class="material-icons text-success cursor-pointer me-1" [routerLink]="['/employee/editor']">add</span>-->
+          <span class="material-icons cursor-pointer me-1" (click)="searchForString()" style="color: #588A87">search</span>
+          <span class="material-icons cursor-pointer" (click)="fetchData()" style="color: #588A87">
             <ng-container *ngIf="isSearchModeEnabled(); else reload">backspace</ng-container>
             <ng-template #reload>refresh</ng-template>
           </span>
@@ -21,24 +21,28 @@
       </form>
     </div>
   </div>
-  <div class="row m-auto mt-3">
+  <div class="row m-auto mt-3" style="max-height: 700px;overflow: auto;">
     <table class="table">
       <thead>
-        <th>ID</th>
-        <th>Vorname</th>
-        <th>Nachname</th>
+        <th hidden>ID</th>
+        <th>Mitarbeiter</th>
+        <!--<th>Nachname</th>-->
       </thead>
       <tbody>
         <ng-container *ngFor="let e of employees$ | async">
           <tr
             class="tr-hover"
             [class.tr-active]="isEmployeeContainedInSelection(e)"
-            (click)="selectEmployee(e)"
-            (dblclick)="goToEmployee(e.id)"
+            (click)="goToEmployee(e.id)"
+            style="background-color: #F2F2F2"
           >
-            <td class="user-select-none">{{ e.id }}</td>
-            <td class="user-select-none">{{ e.firstName }}</td>
-            <td class="user-select-none">{{ e.lastName }}</td>
+            <td class="user-select-none" hidden>{{ e.id }}</td>
+            <td class="user-select-none employee-btn" style="background-color: #F2F2F2">{{ e.firstName }} {{ e.lastName }}</td>
+            <td class="user-select-none employee-btn" style="width: 20px; margin-left: 50px; background-color: #F2F2F2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#588A87" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+              </svg>
+            </td>
           </tr>
         </ng-container>
       </tbody>
@@ -55,3 +59,11 @@
     <p>Es wurden keine Mitarbeiter*innen gefunden.</p>
   </div>
 </div>
+
+<div class="text-center" style="margin: 25px;">
+  <button class="btn add-btn" [routerLink]="['/employee/editor']">
+    <span class="material-icons cursor-pointer">add</span>
+  </button>
+</div>
+
+<!--(click)="selectEmployee(e)"-->

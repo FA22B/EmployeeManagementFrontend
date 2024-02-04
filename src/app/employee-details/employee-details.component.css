@@ -1,0 +1,41 @@
+#employee-details {
+  margin-top: 20px;
+  border-style: none;
+  border-radius: 40px;
+  padding: 30px;
+  padding-bottom: 10px;
+  background-color: #D3DCD7;
+  color: #588A87;
+}
+
+.container-qualification {
+  padding-top: 40px;
+  padding-bottom: 10px;
+
+}
+
+.edit-btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #588A87;
+  color: white;
+  margin-right: 50px;
+  margin-bottom: 10px;
+}
+
+.delete-btn {
+  background-color: #588A87;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  margin-left: 50px;
+  border-style: none;
+}
+
+td {
+  border-radius: 20px;
+  background-color: #F2F2F2;
+  color:#588A87;
+}
