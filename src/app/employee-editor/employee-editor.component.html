@@ -42,9 +42,6 @@
           <input type="text" class="form-control" id="street" placeholder="Musterstr. 11" [(ngModel)]="employee.street" />
           <p class="text-danger">{{ getFieldValidationResult('street') }}</p>
         </div>
-        <!--<div class="row my-2">
-
-        </div>-->
         <div class="row my-2">
           <div class="col-4">
             <label for="postcode" class="form-label">PLZ</label>
@@ -100,6 +97,11 @@
       </div>
     </div>
   </ng-container>
+  <div class="text-center" style="margin: 25px;">
+    <button class="btn save-btn" >
+      <span class="material-icons cursor-pointer" (click)="save()">save</span>
+    </button>
+  </div>
   <ng-template #employeeNotFound>
     <app-not-found
       [message]="'Der Mitarbeiter mit der ID ' + employeeId + ' konnte nicht gefunden werden.'"
