@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterModule} from '@angular/router';
-import { HistoryService } from '../history.service';
-import { Qualification } from '../Qualification';
-import { QualificationService } from '../../../../EMS/src/app/services/qualifications/qualification.service';
-import { QualificationEmployees } from '../QualificationEmployees';
+import {HistoryService} from '../history.service';
+import {Qualification} from '../Qualification';
+import {QualificationEmployees} from '../QualificationEmployees';
 import {CommonModule} from "@angular/common";
 import {NotFoundComponent} from "../not-found/not-found.component";
 import {ConfirmableDeleteComponent} from "../confirmable-delete/confirmable-delete.component";
 import {StatusBarComponent} from "../status-bar/status-bar.component";
+import {QualificationService} from "../qualification.service";
 
 @Component({
   selector: 'app-qualification-details',
@@ -17,19 +17,25 @@ import {StatusBarComponent} from "../status-bar/status-bar.component";
   standalone: true
 })
 export class QualificationDetailsComponent implements OnInit {
-  skill = '';
-  qualification: Qualification | undefined;
-  qualificationEmployees: QualificationEmployees | undefined;
-  found = true;
+  skill = -1;
+  qualification: Qualification | null | undefined;
+  qualificationEmployees: QualificationEmployees | null | undefined;
   showSaveSuccess = false;
   failedMessage = '';
   failed = false;
+
+  get found() {return this.qualification !== null}
+  get loading() {return this.qualification === undefined}
+
+
 
   constructor(
     private route: ActivatedRoute,
     private qualificationService: QualificationService,
     private historyService: HistoryService
-  ) {}
+  ) {
+    console.log(this)
+  }
 
   /**
    * Initial fetch of qualification
@@ -40,6 +46,7 @@ export class QualificationDetailsComponent implements OnInit {
     if (this.found) {
       this.fetchQualificationEmployees(this.skill);
     }
+
   }
 
   /**
@@ -50,17 +57,17 @@ export class QualificationDetailsComponent implements OnInit {
   }
 
   /**
-   * Deletes asynchronusly a qualification
+   * Deletes asynchronously a qualification
    */
   async deleteQualification() {
     if (this.qualification != undefined && (await this.isQualificationDeletable(this.qualification))) {
-      this.qualificationService.deleteQualification(this.qualification);
+      await this.qualificationService.deleteQualification(this.qualification);
       this.goBack();
     }
   }
 
   /**
-   * Checks asynchronusly if a qualification is assigned to any employee (deletable)
+   * Checks asynchronously if a qualification is assigned to any employee (deletable)
    *
    * @param qualification - to check
    * @returns boolean if the qualification is deletable
@@ -88,7 +95,7 @@ export class QualificationDetailsComponent implements OnInit {
    */
   private getRequiredDataFromParams() {
     const routeParams = this.route.snapshot.paramMap;
-    this.skill = String(routeParams.get('id'));
+    this.skill = Number(routeParams.get('id'));
     const routeQueries = this.route.snapshot.queryParamMap;
     if (routeQueries.has('saveSuccess')) {
       this.showSaveSuccess = routeQueries.get('saveSuccess') === 'true';
@@ -96,26 +103,26 @@ export class QualificationDetailsComponent implements OnInit {
   }
 
   /**
-   * Fetches a certain qualification by its skill,
-   * also, it will set the found switch, depending if the qualification was found.
+   * Fetches a certain qualification by its skill
    *
-   * @param skill - the skill to get
+   * @param qualification_id - the skill to get
    */
-  private fetchQualification(skill: string) {
-    this.qualificationService.getQualificationBySkill(skill).then((qualification) => {
-      this.found = qualification != undefined;
-      this.qualification = qualification;
-    });
+  private fetchQualification(qualification_id: number) {
+    this.qualificationService
+      .getQualificationById(qualification_id)
+      .then((qualification) =>
+        this.qualification = qualification
+      );
   }
 
   /**
    * Fetches QualificationEmployees with a certain skill
    *
-   * @param skill - to get the qualification employees
+   * @param qualification_id - to get the qualification employees
    */
-  private fetchQualificationEmployees(skill: string) {
-    this.qualificationService.getQualificationEmployeesBySkill(skill).subscribe((qe) => {
-      this.qualificationEmployees = qe;
+  private fetchQualificationEmployees(qualification_id: number) {
+    this.qualificationService.getQualificationEmployeesById(qualification_id).subscribe((qe) => {
+      this.qualificationEmployees = qe || null;
     });
   }
 }

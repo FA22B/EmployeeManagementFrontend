@@ -1,10 +1,9 @@
 <div class="container">
-  <ng-container *ngIf="found; else employeeNotAvailable">
-    <app-status-bar [title]="'Details Mitarbeiter ' + id" [editable]="true" [editRoute]="'/employee/editor/' + id">
-    </app-status-bar>
-    <ng-container *ngIf="showSaveSuccess">
-      <div class="alert alert-success justify-content-end" role="alert">Speichern erfolgreich!</div>
-    </ng-container>
+  @if (found) {
+    <app-status-bar [title]="'Details Mitarbeiter ' + id" [editable]="true" [editRoute]="'/employee/editor/' + id"></app-status-bar>
+     @if (showSaveSuccess){
+       <div class="alert alert-success justify-content-end" role="alert">Speichern erfolgreich!</div>
+     }
     <div class="row">
       <div class="col">
         <p>Vorname:</p>
@@ -28,14 +27,14 @@
       <div class="col">
         <table class="table">
           <thead>
-            <th>Name</th>
+          <th>Name</th>
           </thead>
           <tbody>
-            <ng-container *ngFor="let skill of employee?.skillSet">
-              <tr class="tr-hover" [routerLink]="['/qualification/', skill]">
-                <td>{{ skill }}</td>
-              </tr>
-            </ng-container>
+          @for (qualification of employee?.skillSet; track qualification){
+            <tr class="tr-hover" [routerLink]="['/qualification/', qualification.id]">
+              <td>{{ qualification.skill }}</td>
+            </tr>
+          }
           </tbody>
         </table>
       </div>
@@ -44,8 +43,8 @@
       [message]="'Sollen die Mitarbeiter:innen wirklich gelöscht werden?'"
       (deleteEmit)="deleteEmployee(this.employee?.id)"
     ></app-confirmable-delete>
-  </ng-container>
-  <ng-template #employeeNotAvailable>
+  }
+  @else {
     <app-not-found [message]="'Der Mitarbeiter mit der ID ' + id + ' konnte nicht gefunden werden.'"></app-not-found>
-  </ng-template>
+  }
 </div>

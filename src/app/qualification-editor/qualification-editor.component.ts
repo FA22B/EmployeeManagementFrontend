@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Qualification } from '../Qualification';
-import { QualificationService } from '../../../../EMS/src/app/services/qualifications/qualification.service';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {StatusBarComponent} from "../status-bar/status-bar.component";
+import {QualificationService} from "../qualification.service";
 
 @Component({
   selector: 'app-qualification-editor',
