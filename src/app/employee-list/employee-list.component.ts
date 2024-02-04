@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { Employee } from '../Employee';
 import { EmployeeService } from '../employee.service';
+import {CommonModule} from "@angular/common";
+import {ConfirmableDeleteComponent} from "../confirmable-delete/confirmable-delete.component";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-employee-list',
+  imports: [CommonModule, FormsModule, RouterModule, ConfirmableDeleteComponent],
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css'],
+  standalone: true
 })
 export class EmployeeListComponent {
   bearer = '';

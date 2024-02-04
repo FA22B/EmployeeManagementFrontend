@@ -13,7 +13,10 @@ export function initializeKeycloak(keycloak: KeycloakService) {
         clientId: 'employee-management-service-frontend',
       },
       initOptions: {
-        checkLoginIframe: false
+        checkLoginIframe: false,
+        onLoad: "check-sso",
+        silentCheckSsoRedirectUri: window.location.origin + "/assets/silent-check-sso.html",
+        enableLogging: true
       },
     });
 }

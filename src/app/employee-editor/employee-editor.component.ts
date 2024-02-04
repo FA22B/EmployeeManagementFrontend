@@ -5,11 +5,17 @@ import { Employee } from '../Employee';
 import { EmployeeService } from '../employee.service';
 import { Qualification } from '../Qualification';
 import { QualificationService } from '../qualification.service';
+import {StatusBarComponent} from "../status-bar/status-bar.component";
+import {NotFoundComponent} from "../not-found/not-found.component";
+import {FormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-employee-editor',
+  imports: [CommonModule, FormsModule, NotFoundComponent, StatusBarComponent],
   templateUrl: './employee-editor.component.html',
   styleUrls: ['./employee-editor.component.css'],
+  standalone: true
 })
 export class EmployeeEditorComponent implements OnInit {
   employeeId = 0;

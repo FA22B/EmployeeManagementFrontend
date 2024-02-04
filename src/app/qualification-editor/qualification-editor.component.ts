@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Qualification } from '../Qualification';
-import { QualificationService } from '../qualification.service';
+import { QualificationService } from '../../../../EMS/src/app/services/qualifications/qualification.service';
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+import {StatusBarComponent} from "../status-bar/status-bar.component";
 
 @Component({
   selector: 'app-qualification-editor',
+  imports: [CommonModule, StatusBarComponent, FormsModule],
   templateUrl: './qualification-editor.component.html',
   styleUrls: ['./qualification-editor.component.css'],
+  standalone: true
 })
 export class QualificationEditorComponent {
   qualification: Qualification;

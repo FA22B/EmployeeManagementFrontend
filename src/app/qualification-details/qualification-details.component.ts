@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterModule} from '@angular/router';
 import { HistoryService } from '../history.service';
 import { Qualification } from '../Qualification';
-import { QualificationService } from '../qualification.service';
+import { QualificationService } from '../../../../EMS/src/app/services/qualifications/qualification.service';
 import { QualificationEmployees } from '../QualificationEmployees';
+import {CommonModule} from "@angular/common";
+import {NotFoundComponent} from "../not-found/not-found.component";
+import {ConfirmableDeleteComponent} from "../confirmable-delete/confirmable-delete.component";
+import {StatusBarComponent} from "../status-bar/status-bar.component";
 
 @Component({
   selector: 'app-qualification-details',
+  imports: [CommonModule, NotFoundComponent, ConfirmableDeleteComponent, StatusBarComponent, RouterModule],
   templateUrl: './qualification-details.component.html',
   styleUrls: ['./qualification-details.component.css'],
+  standalone: true
 })
 export class QualificationDetailsComponent implements OnInit {
   skill = '';

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { Employee } from './Employee';
 import { Qualification } from './Qualification';
-import { QualificationService } from './qualification.service';
 import { ValidationResult } from './ValidationResult';
+import {QualificationService} from "./qualification.service";
 
 @Injectable({
   providedIn: 'root',

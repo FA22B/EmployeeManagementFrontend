@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { Qualification } from '../Qualification';
-import { QualificationService } from '../qualification.service';
+import { QualificationService } from '../../../../EMS/src/app/services/qualifications/qualification.service';
+import {CommonModule} from "@angular/common";
+import {ConfirmableDeleteComponent} from "../confirmable-delete/confirmable-delete.component";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-qualification-list',
+  imports: [CommonModule, ConfirmableDeleteComponent, FormsModule, RouterModule],
   templateUrl: './qualification-list.component.html',
   styleUrls: ['./qualification-list.component.css'],
+  standalone: true
 })
 export class QualificationListComponent {
   qualifications$: Observable<Qualification[]>;
