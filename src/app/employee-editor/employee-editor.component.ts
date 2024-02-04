@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
-import { Employee } from '../Employee';
-import { EmployeeService } from '../employee.service';
-import { Qualification } from '../Qualification';
-import { QualificationService } from '../qualification.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {firstValueFrom} from 'rxjs';
+import {Employee} from '../Employee';
+import {EmployeeService} from '../employee.service';
+import {Qualification} from '../Qualification';
+import {QualificationService} from '../qualification.service';
 import {StatusBarComponent} from "../status-bar/status-bar.component";
 import {NotFoundComponent} from "../not-found/not-found.component";
 import {FormsModule} from "@angular/forms";
@@ -14,7 +14,7 @@ import {CommonModule} from "@angular/common";
   selector: 'app-employee-editor',
   imports: [CommonModule, FormsModule, NotFoundComponent, StatusBarComponent],
   templateUrl: './employee-editor.component.html',
-  styleUrls: ['./employee-editor.component.css'],
+  styleUrls: ['./employee-editor.component.scss'],
   standalone: true
 })
 export class EmployeeEditorComponent implements OnInit {

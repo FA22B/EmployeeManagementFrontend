@@ -13,7 +13,7 @@ import {QualificationService} from "../qualification.service";
   selector: 'app-qualification-details',
   imports: [CommonModule, NotFoundComponent, ConfirmableDeleteComponent, StatusBarComponent, RouterModule],
   templateUrl: './qualification-details.component.html',
-  styleUrls: ['./qualification-details.component.css'],
+  styleUrls: ['./qualification-details.component.scss'],
   standalone: true
 })
 export class QualificationDetailsComponent implements OnInit {

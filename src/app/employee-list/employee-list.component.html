@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="row ms-1">
       <div class="col d-flex align-items-center">
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="row m-auto mt-3">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <th>ID</th>
         <th>Vorname</th>
@@ -31,8 +31,7 @@
       <tbody>
         <ng-container *ngFor="let e of employees$ | async">
           <tr
-            class="tr-hover"
-            [class.tr-active]="isEmployeeContainedInSelection(e)"
+            [class.table-active]="isEmployeeContainedInSelection(e)"
             (click)="selectEmployee(e)"
             (dblclick)="goToEmployee(e.id)"
           >

@@ -1,31 +1,68 @@
-<div class="container">
+<div class="container-fluid">
   @if (found) {
     <app-status-bar [title]="'Details Mitarbeiter ' + id" [editable]="true" [editRoute]="'/employee/editor/' + id"></app-status-bar>
      @if (showSaveSuccess){
        <div class="alert alert-success justify-content-end" role="alert">Speichern erfolgreich!</div>
      }
+
     <div class="row">
       <div class="col">
-        <p>Vorname:</p>
-        <p>Nachname:</p>
-        <p>Straße:</p>
-        <p>Postleitzahl:</p>
-        <p>Stadt:</p>
-        <p>Telefonnummer:</p>
+        Vorname:
       </div>
       <div class="col">
-        <p>{{ this.employee?.firstName }}</p>
-        <p>{{ this.employee?.lastName }}</p>
-        <p>{{ this.employee?.street }}</p>
-        <p>{{ this.employee?.postcode }}</p>
-        <p>{{ this.employee?.city }}</p>
-        <p>{{ this.employee?.phone }}</p>
+        {{ this.employee?.firstName }}
       </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        Nachname:
+      </div>
+      <div class="col">
+        {{ this.employee?.lastName }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        Straße:
+      </div>
+      <div class="col">
+        {{ this.employee?.street }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        Postleitzahl:
+      </div>
+      <div class="col">
+        {{ this.employee?.postcode }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        Stadt:
+      </div>
+      <div class="col">
+        {{ this.employee?.city }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        Telefonnummer:
+      </div>
+      <div class="col">
+        {{ this.employee?.phone }}
+      </div>
+    </div>
+
     <div class="row margin-y-10">
       <h5>Qualifikationen</h5>
       <div class="col">
-        <table class="table">
+        <table class="table table-hover">
           <thead>
           <th>Name</th>
           </thead>

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NavigationStart, Router, RouterOutlet} from '@angular/router';
-import { HistoryService } from './history.service';
+import {HistoryService} from './history.service';
 import {CommonModule} from "@angular/common";
 import {NavigationBarComponent} from "./navigation-bar/navigation-bar.component";
 
@@ -8,7 +8,7 @@ import {NavigationBarComponent} from "./navigation-bar/navigation-bar.component"
   selector: 'app-root',
   imports: [CommonModule, RouterOutlet, NavigationBarComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   standalone: true
 })
 export class AppComponent {

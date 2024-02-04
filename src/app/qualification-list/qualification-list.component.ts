@@ -11,7 +11,7 @@ import {QualificationService} from "../qualification.service";
   selector: 'app-qualification-list',
   imports: [CommonModule, ConfirmableDeleteComponent, FormsModule, RouterModule],
   templateUrl: './qualification-list.component.html',
-  styleUrls: ['./qualification-list.component.css'],
+  styleUrls: ['./qualification-list.component.scss'],
   standalone: true
 })
 export class QualificationListComponent {
