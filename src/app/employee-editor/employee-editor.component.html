@@ -1,93 +1,110 @@
-<div class="container-fluid">
+<div class="container" style="width: 500px">
   @if (found){
-  <app-status-bar [title]="getTitle()" [editable]="false" [saveable]="true" (saveEmit)="save()"> </app-status-bar>
+  <app-status-bar [editable]="false" [saveable]="true" (saveEmit)="save()"> </app-status-bar>
   <div class="row mt-4">
     @if(callbackAlertShown){
-    <div
-      class="alert justify-content-end"
-      [class.alert-success]="saveSuccess"
-      [class.alert-danger]="!saveSuccess"
-      role="alert"
-    >
-      {{ saveMessage }}
-    </div>
+      <div
+        class="alert justify-content-end"
+        [class.alert-success]="saveSuccess"
+        [class.alert-danger]="!saveSuccess"
+        role="alert"
+      >
+        {{ saveMessage }}
+      </div>
     }
   </div>
-  <div class="row m-auto">
-    <div class="row my-2">
-      <label for="firstName" class="form-label">Vorname</label>
-      <input type="text" class="form-control" id="firstName" placeholder="Max" [(ngModel)]="employee.firstName" />
-      <p class="text-danger">{{ getFieldValidationResult('firstName') }}</p>
-    </div>
-    <div class="row my-2">
-      <label for="lastName" class="form-label">Nachname</label>
-      <input
-        type="text"
-        class="form-control"
-        id="lastName"
-        placeholder="Mustermann"
-        [(ngModel)]="employee.lastName"
-      />
-      <p class="text-danger">{{ getFieldValidationResult('lastName') }}</p>
-    </div>
-    <div class="row my-2">
-      <label for="street" class="form-label">Straße + Hausnr.</label>
-      <input type="text" class="form-control" id="street" placeholder="Musterstr. 11" [(ngModel)]="employee.street" />
-      <p class="text-danger">{{ getFieldValidationResult('street') }}</p>
-    </div>
-    <div class="row my-2">
-      <label for="postcode" class="form-label">Postleitzahl</label>
-      <input type="text" class="form-control" id="postcode" placeholder="12345" [(ngModel)]="employee.postcode" />
-      <p class="text-danger">{{ getFieldValidationResult('postcode') }}</p>
-    </div>
-    <div class="row my-2">
-      <label for="city" class="form-label">Stadt</label>
-      <input type="text" class="form-control" id="city" placeholder="Musterstadt" [(ngModel)]="employee.city" />
-      <p class="text-danger">{{ getFieldValidationResult('city') }}</p>
-    </div>
-    <div class="row my-2">
-      <label for="phone" class="form-label">Telefonnr.</label>
-      <input type="text" class="form-control" id="phone" placeholder="+49 123 456789" [(ngModel)]="employee.phone" />
-      <p class="text-danger">{{ getFieldValidationResult('phone') }}</p>
-    </div>
-    <div class="row my-2">
-      <label for="qualifications" class="form-label">Qualifikationen</label>
-      <div id="qualifications" class="form-control m-1">
-        <div>
-          @for (qualification of employee.skillSet; track qualification.id){
-            <div class="d-inline" style="white-space: nowrap">
-              <a
-                class="bg-success text-light p-1 m-2 rounded text-decoration-none d-inline-block"
-                style="white-space: normal"
-              >
-                {{ qualification.skill }}
-                <span class="cursor-pointer" (click)="removeSkill(qualification)">&#x2715;</span>
-              </a>
-            </div>
-          }
-          <input
-            class="border-0 m-1 remove-input-focus-outline"
-            placeholder="Qualifikation"
-            [(ngModel)]="tagInputValue"
-            (input)="refreshSuggestions($event)"
-            (keyup.enter)="addSkillToEmployee(tagInputValue)"
-            (keyup.backspace)="removeLastSkillIfTagInputValueIsEmpty()"
-          />
+
+  <div class="text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="#588A87" class="bi bi-person-plus" viewBox="0 0 16 16">
+      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+    </svg>
+  </div>
+
+  <div id="new-employee">
+    <div class="row m-auto">
+      <div class="row my-2">
+        <label for="firstName" class="form-label">Vorname</label>
+        <input type="text" class="form-control" id="firstName" placeholder="Max" [(ngModel)]="employee.firstName" />
+        <p class="text-danger">{{ getFieldValidationResult('firstName') }}</p>
+      </div>
+      <div class="row my-2">
+        <label for="lastName" class="form-label">Nachname</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="Mustermann"
+          [(ngModel)]="employee.lastName"
+        />
+        <p class="text-danger">{{ getFieldValidationResult('lastName') }}</p>
+      </div>
+
+      <div class="row my-2">
+        <label for="street" class="form-label">Straße + Hausnr.</label>
+        <input type="text" class="form-control" id="street" placeholder="Musterstr. 11" [(ngModel)]="employee.street" />
+        <p class="text-danger">{{ getFieldValidationResult('street') }}</p>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-4">
+          <label for="postcode" class="form-label">PLZ</label>
+          <input type="text" class="form-control" id="postcode" placeholder="12345" [(ngModel)]="employee.postcode" />
+          <p class="text-danger">{{ getFieldValidationResult('postcode') }}</p>
+        </div>
+        <div class="col-8">
+          <label for="city" class="form-label">Stadt</label>
+          <input type="text" class="form-control" id="city" placeholder="Musterstadt" [(ngModel)]="employee.city" />
+          <p class="text-danger">{{ getFieldValidationResult('city') }}</p>
         </div>
       </div>
-    </div>
-    <div id="qualification-input-suggestions" class="form-control mt-1" *ngIf="suggestions.length !== 0">
-      @for (suggestion of suggestions; track suggestion.id){
-        <p class="p-1 px-15 cursor-pointer tr-hover list-group-item" (click)="addSkillToEmployee(suggestion.skill)">
-          {{ suggestion.skill }}
-        </p>
-      }
+
+      <div class="row my-2">
+        <label for="phone" class="form-label">Telefonnr.</label>
+        <input type="text" class="form-control" id="phone" placeholder="+49 123 456789" [(ngModel)]="employee.phone" />
+        <p class="text-danger">{{ getFieldValidationResult('phone') }}</p>
+      </div>
+      <div class="row my-2">
+        <label for="qualifications" class="form-label">
+          <h3><b>Qualifikationen</b></h3>
+        </label>
+        <div class="form-control m-1">
+          <div>
+            @for (qualification of employee.skillSet; track qualification.id){
+              <div class="d-inline" style="white-space: nowrap">
+                <a
+                  class="bg-success text-light p-1 m-2 rounded text-decoration-none d-inline-block"
+                  style="white-space: normal"
+                >
+                  {{ qualification.skill }}
+                  <span class="cursor-pointer" (click)="removeSkill(qualification)">&#x2715;</span>
+                </a>
+              </div>
+            }
+            <input
+              class="border-0 m-1 remove-input-focus-outline"
+              placeholder="Qualifikation"
+              [(ngModel)]="tagInputValue"
+              (input)="refreshSuggestions($event)"
+              (keyup.enter)="addSkillToEmployee(tagInputValue)"
+              (keyup.backspace)="removeLastSkillIfTagInputValueIsEmpty()"
+            />
+          </div>
+        </div>
+      </div>
+      <div id="qualification-input-suggestions" class="form-control mt-1" *ngIf="suggestions.length !== 0">
+        @for (suggestion of suggestions; track suggestion.id){
+          <p class="p-1 px-15 cursor-pointer tr-hover list-group-item" (click)="addSkillToEmployee(suggestion.skill)">
+            {{ suggestion.skill }}
+          </p>
+        }
+      </div>
     </div>
   </div>
   }
   @else {
-    <app-not-found
-      [message]="'Der Mitarbeiter mit der ID ' + employeeId + ' konnte nicht gefunden werden.'"
-    ></app-not-found>
+  <app-not-found
+    [message]="'Der Mitarbeiter mit der ID ' + employeeId + ' konnte nicht gefunden werden.'"
+  ></app-not-found>
   }
 </div>

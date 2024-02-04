@@ -40,7 +40,7 @@ export class QualificationListComponent {
    *
    * @param id - of the employee
    */
-  goToQualification(id: string | undefined) {
+  goToQualification(id: number | undefined) {
     if (id != undefined) {
       this.router.navigateByUrl('/qualification/' + id);
     }
